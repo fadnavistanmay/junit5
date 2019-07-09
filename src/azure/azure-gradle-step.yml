@@ -3,6 +3,11 @@ parameters:
   publishTestResults: false
 
 steps:
+  - task: Cache@0
+    inputs:
+      path: $(GRADLE_USER_HOME)
+      key: 'gradle_$(Agent.JobName)'
+
   - bash: |
       set -e
       # when executing on an Azure Pipelines build agent (not in a container)
@@ -11,11 +16,14 @@ steps:
         export JAVA_HOME="${JAVA_HOME_11_X64}"
       fi
       ./gradlew --version
-      ./gradlew --scan --warning-mode=all -Dplatform.tooling.support.tests.enabled=true build
+      ./gradlew --build-cache --scan --warning-mode=all -Dplatform.tooling.support.tests.enabled=true build
+      # stop the gradle daemon so there isn't a problem with reading files in the SaveCache step
+      ./gradlew --stop
     env:
       LC_ALL: en_US.UTF-8
     displayName: Test
     continueOnError: ${{ parameters.continueOnError }}
+
   - task: PublishTestResults@2
     displayName: Publish Test Results
     inputs:
