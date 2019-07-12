@@ -3,10 +3,13 @@ parameters:
   publishTestResults: false
 
 steps:
-  - task: Cache@0
+  - task: CacheBeta@0
     inputs:
+      key: |
+        gradle
+        $(Agent.JobName)
       path: $(GRADLE_USER_HOME)
-      key: 'gradle_$(Agent.JobName)'
+    displayName: Gradle build cache
 
   - bash: |
       set -e
