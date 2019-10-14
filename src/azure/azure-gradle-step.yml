@@ -5,9 +5,7 @@ parameters:
 steps:
   - task: CacheBeta@0
     inputs:
-      key: |
-        gradle
-        $(Agent.JobName)
+      key: $(CACHE_KEY)
       path: $(GRADLE_USER_HOME)
     displayName: Gradle build cache
 
