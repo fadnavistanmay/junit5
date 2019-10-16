@@ -10,9 +10,17 @@ stages:
   jobs:
   - template: azure-pipelines-jobs.yml
 
+- stage: firstruntar
+  displayName: 'Empty Cache Tar'
+  variables:
+    AZP_CACHING_TAR: 'true'
+    CACHE_PACK: tar
+  jobs:
+  - template: azure-pipelines-jobs.yml
+
 variables:
   GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
-  CACHE_KEY: gradle | $(Agent.OS) | $(Build.BuildId) | gradle.properties
+  CACHE_KEY: gradle | $(Agent.OS) | $(Build.BuildId) | $(CACHE_PACK) | gradle.properties
   CACHE_RESTOREKEY: gradle | $(Agent.OS) | $(Build.BuildId)
 
 #jobs:

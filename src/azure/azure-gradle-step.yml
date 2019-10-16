@@ -32,4 +32,4 @@ steps:
       testResultsFiles: '*/build/test-results/test/TEST-*.xml'
     condition: eq(${{ parameters.publishTestResults }}, true)
 
-  - script: echo "#just a comment" >> gradle.properties
+  #- script: echo "#just a comment" >> gradle.properties
