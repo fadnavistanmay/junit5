@@ -7,6 +7,7 @@ steps:
     inputs:
       key: $(CACHE_KEY)
       path: $(GRADLE_USER_HOME)
+      restoreKeys: $(CACHE_RESTOREKEY)
     displayName: Gradle build cache
 
   - bash: |
