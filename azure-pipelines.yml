@@ -12,7 +12,7 @@ stages:
 
 variables:
   GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
-  CACHE_KEY: gradle | $(Agent.OS) | $(Build.BuildId)
+  CACHE_KEY: gradle | $(Agent.OS) | $(Build.BuildId) | gradle.properties
 
 #jobs:
 #- job: linux_11
