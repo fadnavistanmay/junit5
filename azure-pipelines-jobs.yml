@@ -47,10 +47,3 @@ jobs:
     - checkout: self
       fetchDepth: 10
     - template: src/azure/azure-gradle-step.yml
-  
-- job: Tanmaydev
-  pool: tanmaydev
-  steps:
-    - checkout: self
-      fetchDepth: 10
-    - template: src/azure/azure-gradle-step.yml
