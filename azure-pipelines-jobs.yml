@@ -53,4 +53,4 @@ jobs:
   steps:
     - checkout: self
       fetchDepth: 10
-    - template: src/azure/azure-gradle-steps.yml
+    - template: src/azure/azure-gradle-step.yml
