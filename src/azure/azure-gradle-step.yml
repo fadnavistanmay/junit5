@@ -3,12 +3,19 @@ parameters:
   publishTestResults: false
 
 steps:
-  - task: CacheBeta@0
+  - task: CacheBeta@1
     inputs:
       key: $(CACHE_KEY)
       path: $(GRADLE_USER_HOME)
       restoreKeys: $(CACHE_RESTOREKEY)
     displayName: Gradle build cache
+
+  - task: Cache@2
+    inputs:
+      key: $(CACHE_KEY) | cachega
+      path: $(GRADLE_USER_HOME)
+      restoreKeys: $(CACHE_RESTOREKEY)
+    displayName: Gradle build cache GA
 
   - bash: |
       set -e
