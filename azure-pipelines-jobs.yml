@@ -31,11 +31,3 @@ jobs:
     - template: src/azure/azure-gradle-step.yml
       parameters:
         continueOnError: true
-
-- job: Windows
-  pool:
-    vmImage: 'windows-2019'
-  steps:
-    - checkout: self
-      fetchDepth: 10
-    - template: src/azure/azure-gradle-step.yml
